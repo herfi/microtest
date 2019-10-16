@@ -12,4 +12,4 @@ steps:
     cloudFoundry:
       org: 'P2001760543trial_trial'
       space: 'dev'
-      credentialsId: 'ce6f3d8d-4608-4869-9076-e69e9e36e4c4'
+      credentialsId: 'ce6f3d8d-4608-4869-9076-e69e9e36e4c4' 
