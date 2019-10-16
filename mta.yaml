@@ -1,0 +1,12 @@
+ID: microservice_demo
+_schema-version: '2.1'
+version: 0.0.1
+
+modules:
+ - name: node_module
+   type: nodejs
+   path: node_module
+   provides:
+    - name: node_module_api
+      properties:
+         url: ${default-url}
