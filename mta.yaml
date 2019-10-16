@@ -4,7 +4,7 @@ version: 0.0.1
 
 modules:
  - name: node_module
-   type: nodejs
+   type: javascript.nodejs
    path: node_module
    provides:
     - name: node_module_api
