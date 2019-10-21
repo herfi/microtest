@@ -34,6 +34,25 @@ node() {
     	mtaBuild script: this
 	}
 	stage('deploy') {
-    	cloudFoundryDeploy script: this, deployTool:'mtaDeployPlugin', dockerImage: 'ppiper/cf-cli'
+        when {
+            branch 'dev'
+            cloudFoundryDeploy(
+                script: this, 
+                deployTool:'mtaDeployPlugin', 
+                dockerImage: 'ppiper/cf-cli',
+                cloudFoundry: [credentialsId: 'ce6f3d8d-4608-4869-9076-e69e9e36e4c4', manifest: 'cfManifest', org: 'P2001798219trial_trial', space: 'dev'],
+            )
+        }
+	}
+    	stage('deploy') {
+        when {
+            branch 'master'
+            cloudFoundryDeploy(
+                script: this, 
+                deployTool:'mtaDeployPlugin', 
+                dockerImage: 'ppiper/cf-cli',
+                cloudFoundry: [credentialsId: 'ce6f3d8d-4608-4869-9076-e69e9e36e4c4', manifest: 'cfManifest', org: 'P2001798219trial_trial', space: 'int'],
+            )
+        }
 	}
 }
