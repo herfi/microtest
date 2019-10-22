@@ -54,7 +54,7 @@ agent any
         
         }
         stage('deploy_int') {
-            when {
+            when { 
                 branch 'master'
 
             }
