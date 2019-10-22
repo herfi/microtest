@@ -38,7 +38,7 @@ agent any
                 mtaBuild script: this
              }
         }
-        stage('deploy') {
+        stage('deploy_dev') {
             when {
                 branch 'dev'
 
@@ -53,7 +53,7 @@ agent any
              }
         
         }
-        stage('deploy') {
+        stage('deploy_int') {
             when {
                 branch 'master'
 
