@@ -7,7 +7,7 @@
  * The Jenkins can easily be bootstraped using the life-cycle script located inside the 'cx-server' directory.
  *
  *More information on getting started with Continuous Delivery can be found in the following places:
- *   - GitHub repository: https://github.com/SAP/cloud-s4-sdk-pipeline
+*   - GitHub repository: https://github.com/SAP/cloud-s4-sdk-pipeline
  *   - Blog Post: https://blogs.sap.com/2017/09/20/continuous-integration-and-delivery
  */
 
