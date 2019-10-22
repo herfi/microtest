@@ -23,7 +23,7 @@ node {
     load './pipelines/s4sdk-pipeline.groovy'
 }*/
 @Library('piper-lib-os') _
-pipline() { 
+pipeline() { 
 agent any
     stage('prepare') {
         checkout scm
