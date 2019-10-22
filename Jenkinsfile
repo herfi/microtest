@@ -59,7 +59,7 @@ agent any
 
             }
             steps {    
-                cloudFoundryDeploy(
+                cloudFoundryDeploy( 
                     script: this, 
                     deployTool:'mtaDeployPlugin', 
                     dockerImage: 'ppiper/cf-cli',
