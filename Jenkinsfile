@@ -25,38 +25,48 @@ node {
 @Library('piper-lib-os') _
 pipeline() { 
 agent any
-    stage('prepare') {
-        checkout scm
-        setupCommonPipelineEnvironment script:this
-    }
-    
-    stage('build') {
-    	mtaBuild script: this
-	}
-	stage('deploy') {
-        when {
-            branch 'dev'
-
-         }    
-        cloudFoundryDeploy(
-            script: this, 
-            deployTool:'mtaDeployPlugin', 
-            dockerImage: 'ppiper/cf-cli',
-            cloudFoundry: [credentialsId: 'ce6f3d8d-4608-4869-9076-e69e9e36e4c4', manifest: 'cfManifest', org: 'P2001798219trial_trial', space: 'dev'],
-        )
-       
-	}
-    	stage('deploy') {
-        when {
-            branch 'master'
-
-        }    
-        cloudFoundryDeploy(
-            script: this, 
-            deployTool:'mtaDeployPlugin', 
-            dockerImage: 'ppiper/cf-cli',
-            cloudFoundry: [credentialsId: 'ce6f3d8d-4608-4869-9076-e69e9e36e4c4', manifest: 'cfManifest', org: 'P2001798219trial_trial', space: 'int'],
-        )
+    stages {
+        stage('prepare') {
+            steps {
+                checkout scm
+                setupCommonPipelineEnvironment script:this
+             }
+        }
         
-	}
+        stage('build') {
+            steps {
+                mtaBuild script: this
+             }
+        }
+        stage('deploy') {
+            when {
+                branch 'dev'
+
+            } 
+            steps {   
+                cloudFoundryDeploy(
+                    script: this, 
+                    deployTool:'mtaDeployPlugin', 
+                    dockerImage: 'ppiper/cf-cli',
+                    cloudFoundry: [credentialsId: 'ce6f3d8d-4608-4869-9076-e69e9e36e4c4', manifest: 'cfManifest', org: 'P2001798219trial_trial', space: 'dev'],
+                )
+             }
+        
+        }
+        stage('deploy') {
+            when {
+                branch 'master'
+
+            }
+            steps {    
+                cloudFoundryDeploy(
+                    script: this, 
+                    deployTool:'mtaDeployPlugin', 
+                    dockerImage: 'ppiper/cf-cli',
+                    cloudFoundry: [credentialsId: 'ce6f3d8d-4608-4869-9076-e69e9e36e4c4', manifest: 'cfManifest', org: 'P2001798219trial_trial', space: 'int'],
+                )
+            }
+            
+        }
+    }
 }
